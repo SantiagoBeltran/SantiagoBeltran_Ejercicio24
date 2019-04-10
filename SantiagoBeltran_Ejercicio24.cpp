@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
-//#include <boost/algorithm/string.hpp>
 
 using namespace std;
  
@@ -77,7 +76,10 @@ double sigma_delta_d = 0.2;
   b_prom=prom(b);
   c_prom=prom(c);
   d_prom=prom(d);
-  cout<<a_prom<<" "<<b_prom<<" "<<c_prom<<" "<<d_prom<<endl;  
+  cout<<a_prom<<endl;
+    cout<<b_prom<<endl;
+    cout<<c_prom<<endl;
+    cout<<d_prom<<endl;  
   return 0;
 }
 
@@ -116,7 +118,7 @@ double loglike(vector <double> x, vector <double> y, double a, double b, double 
     int n=x.size();
     for (i=0;i<n;i++){
         d1=y[i]-modelo(x,a,b,c,d)[i];
-        d1=d1/0.01;
+        d1=d1/0.00001;
         d1=d1*d1;
         suma+=d1;}
     suma=-0.5*suma;   
