@@ -11,7 +11,6 @@ vector <double> modelo(vector <double> x, vector <double> c);
 double loglike(vector <double> x, vector <double> y, vector <double> c);
 void MCMC_polynomial(vector <double> x_obs, vector <double> y_obs, int n_steps, int poly_degree);
 double min(double x, double y);
-double prom(vector<double> valores);
 
 int main () {
   string filename;
@@ -80,16 +79,6 @@ double r;
         r=y;}
 return y;    
 }
-
-
-double prom(vector<double> valores){
- double suma=0;
- int i;   
- for(i=0; i<valores.size();i++){
-     suma+=valores[i];}
- suma=suma/(valores.size());
- return suma;   
-}    
 
 void MCMC_polynomial(vector <double> x_obs, vector <double> y_obs, int n_steps, int poly_degree){
   srand48(23);
