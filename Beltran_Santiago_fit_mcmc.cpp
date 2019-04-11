@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
+#include <ctime>
 
 using namespace std;
  
@@ -64,7 +65,7 @@ double loglike(vector <double> x, vector <double> y, vector <double> c){
     int n=x.size();
     for (i=0;i<n;i++){
         d1=y[i]-modelo(x,c)[i];
-        d1=d1/0.00001;
+        d1=d1/0.1;
         d1=d1*d1;
         suma+=d1;}
     suma=-0.5*suma;   
@@ -81,12 +82,12 @@ return y;
 }
 
 void MCMC_polynomial(vector <double> x_obs, vector <double> y_obs, int n_steps, int poly_degree){
-  srand48(23);
+  srand48(time(0));
   vector<double> coef;
   vector<double> logp;
   int i;
   for (i=0;i< poly_degree+1;i++){
-      coef.push_back(drand48());}
+      coef.push_back(0);}
   
   logp.push_back(loglike(x_obs,y_obs, coef));
   
@@ -107,7 +108,7 @@ void MCMC_polynomial(vector <double> x_obs, vector <double> y_obs, int n_steps, 
       prop.resize(poly_degree+1);
       int l;
       for (l=0;l< poly_degree+1;l++){
-      prop[l]=coef[l]+2*drand48()-1;}
+      prop[l]=coef[l]+0.2*drand48()-0.1;}
       
       logposterior_viejo = loglike(x_obs,y_obs, coef); 
      logposterior_nuevo = loglike(x_obs,y_obs, prop) ;
